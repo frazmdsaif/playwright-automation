@@ -1,7 +1,7 @@
-const {test, expect}=require('@playwright/test');
+import { test, expect } from '@playwright/test';
 
 
-test.only('test case 1', async ({browser,page})=>{
+test('test case 1', async ({ page }) => {
 
     
 
@@ -11,6 +11,19 @@ test.only('test case 1', async ({browser,page})=>{
     await expect(page).toHaveTitle("Online Courses - Learn Anything, On Your Schedule | Udemy");
 
 });
+
+test('test case 2', async ({ page }) => {
+
+    await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+    await expect(page).toHaveTitle('LoginPage Practise | Rahul Shetty Academy');
+    await page.locator('#username').fill('rahulshettyacademy');
+    await page.locator('#password').fill('learning');
+    await page.locator('#signInBtn').click();
+    await expect(page.locator("[style*='block']")).toContainText('Incorrect');
+});
+
+
+
 
 
 
